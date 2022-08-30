@@ -53,4 +53,3 @@ GUILD_ID={Discord Server ID} TOKEN={Discord Bot Token} python src/bot.py
 ### Resign
 
 <img src="https://user-images.githubusercontent.com/62659407/187341202-4369143e-7f04-40d2-a4dd-25911d2ea221.png" width="30%">
-
