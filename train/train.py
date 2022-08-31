@@ -75,33 +75,4 @@ Trainer(
     },
 ).train()
 
-model.save_pretrained("gpt2.pth")
-
-torch.manual_seed(42)
-tokenizer = GPT2Tokenizer.from_pretrained(
-    "gpt2", bos_token="<|startoftext|>", eos_token="<|endoftext|>", pad_token="<|pad|>"
-)
-
-configuration = GPT2Config.from_pretrained("gpt2.pth", output_hidden_states=False)
-
-model = GPT2LMHeadModel.from_pretrained("gpt2.pth", config=configuration)
-model.resize_token_embeddings(len(tokenizer))
-device = torch.device("cuda")
-
-model.cuda()
-
-generated = tokenizer("<|startoftext|> 1. e4", return_tensors="pt").input_ids.cuda()
-sample_outputs = model.generate(
-    generated,
-    do_sample=True,
-    top_k=50,
-    bos_token="<|startoftext|>",
-    eos_token="<|endoftext|>",
-    pad_token="<|pad|>",
-    max_length=300,
-    top_p=0.95,
-    temperature=1.9,
-    num_return_sequences=20,
-)
-for i, sample_output in enumerate(sample_outputs):
-    print("{}: {}".format(i, tokenizer.decode(sample_output, skip_special_tokens=True)))
+model.save_pretrained("../gpt2.pth")
